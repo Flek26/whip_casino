@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>whip_blackjack</title>
+<!-- whip's own typefaces and design tokens, from whip_core: the same look, and a whip theme carries over. -->
+<link rel="stylesheet" href="https://cfx-nui-whip_core/html/css/fonts.css">
+<link rel="stylesheet" href="https://cfx-nui-whip_core/html/css/base.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="panel" class="hidden">
+    <div class="bj-head">
+        <div class="bj-eyebrow" id="label">Blackjack</div>
+        <div class="bj-limits" id="limits"></div>
+    </div>
+
+    <div class="bj-status">
+        <div class="bj-title" id="title">Place your bet</div>
+        <div class="bj-timer hidden" id="timer"><div class="bj-timer-bar" id="timer-bar"></div></div>
+    </div>
+
+    <div class="bj-row" id="bet-row">
+        <span class="bj-label" id="bet-label">Your bet</span>
+        <span class="bj-bet" id="bet">$0</span>
+    </div>
+
+    <div id="hands"></div>
+
+    <div class="bj-row bj-dealer" id="dealer-row">
+        <span class="bj-label">Dealer</span>
+        <span class="bj-total" id="dealer">-</span>
+    </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

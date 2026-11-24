@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>whip_casino</title>
+<!-- whip_casino's one page: each game's own page in a frame of its own. A game's messages come as
+     { game, msg } (shared/env.lua) and are handed to that game's frame as its page had them. -->
+<style>
+html, body { margin: 0; width: 100%; height: 100%; background: transparent; overflow: hidden; }
+iframe { position: fixed; inset: 0; width: 100%; height: 100%; border: 0; background: transparent; }
+</style>
+</head>
+<body>
+<iframe id="blackjack" src="../blackjack/html/index.html"></iframe>
+<iframe id="threecard" src="../threecard/html/index.html"></iframe>
+<iframe id="roulette" src="../roulette/html/index.html"></iframe>
+<script>
+'use strict';
+const frames = {};
+for (const f of document.querySelectorAll('iframe')) {
+    const fr = frames[f.id] = { el: f, ready: false, queue: [] };
+    f.addEventListener('load', () => {
+        fr.ready = true;
+        for (const m of fr.queue.splice(0)) f.contentWindow.postMessage(m, '*');
+    });
+}
+
+window.addEventListener('message', (e) => {
+    const d = e.data;
+    if (!d || typeof d !== 'object' || !d.game) return;
+    const fr = frames[d.game];
+    if (!fr) return;
+    if (fr.ready) fr.el.contentWindow.postMessage(d.msg, '*'); else fr.queue.push(d.msg);
+});
+</script>
+</body>
+</html>

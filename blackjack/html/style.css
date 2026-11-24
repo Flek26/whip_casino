@@ -1,0 +1,103 @@
+/* whip_blackjack: whip's tokens (whip_core/html/css/base.css), whip's glass panel. Written at whip's 2560 x 1440
+   design and scaled by --ui-scale, as whip's own screens are (app.js sets it the way whip's utils.js does). */
+
+html, body { margin: 0; background: transparent; overflow: hidden; }
+body { font-family: var(--ui-font); color: var(--ui-text); -webkit-font-smoothing: antialiased; }
+.hidden { display: none !important; }
+
+#panel {
+    position: fixed;
+    right: 40px;
+    bottom: 200px;
+    width: 400px;
+    zoom: var(--ui-scale, 1);
+    padding: 22px 22px 18px;
+    border-radius: var(--ui-radius-panel);
+    background: var(--ui-surface-raised);
+    border: 1px solid var(--ui-border);
+    box-shadow: var(--ui-shadow-lg);
+    animation: bj-in 0.16s ease-out;
+}
+@keyframes bj-in {
+    from { opacity: 0; transform: translateX(12px); }
+    to   { opacity: 1; transform: none; }
+}
+
+.bj-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    padding-bottom: 14px;
+    border-bottom: 1px solid var(--ui-border);
+}
+.bj-eyebrow, .bj-label {
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ui-text-label);
+}
+.bj-limits { font-size: 14px; color: var(--ui-text-mid); font-variant-numeric: tabular-nums; }
+
+.bj-status { padding: 16px 0 14px; }
+.bj-title {
+    font-family: var(--ui-font-display);
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1.1;
+}
+.bj-title.won  { color: var(--ui-success); }
+.bj-title.lost { color: var(--ui-error); }
+.bj-title.turn { color: var(--ui-accent); }
+
+.bj-timer {
+    margin-top: 10px;
+    height: 5px;
+    border-radius: 3px;
+    background: var(--ui-surface-light);
+    overflow: hidden;
+}
+.bj-timer-bar {
+    height: 100%;
+    width: 100%;
+    background: var(--ui-accent);
+    transition: width 0.25s linear;
+}
+.bj-timer.low .bj-timer-bar { background: var(--ui-error); }
+
+.bj-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 14px;
+    margin-bottom: 6px;
+    border-radius: var(--ui-radius-row);
+    background: var(--ui-surface-medium);
+}
+.bj-row.active { box-shadow: inset 0 0 0 2px var(--ui-accent); }
+.bj-dealer { margin-top: 10px; margin-bottom: 0; }
+
+.bj-bet, .bj-total {
+    font-size: 22px;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+}
+.bj-bet.pending { color: var(--ui-text-mid); }
+.bj-bet.pending::before { content: '\25B4\25BE  '; font-size: 14px; color: var(--ui-text-dim); }
+
+.bj-hand-left { display: flex; flex-direction: column; gap: 2px; }
+.bj-hand-bet { font-size: 14px; color: var(--ui-text-mid); font-variant-numeric: tabular-nums; }
+.bj-hand-right { display: flex; align-items: center; gap: 10px; }
+
+.bj-tag {
+    padding: 3px 9px;
+    border-radius: var(--ui-radius-sm);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    background: var(--ui-surface-light);
+    color: var(--ui-text-mid);
+}
+.bj-tag.blackjack { background: var(--ui-accent-light); color: var(--ui-accent); }
+.bj-tag.bust { color: var(--ui-error); }
